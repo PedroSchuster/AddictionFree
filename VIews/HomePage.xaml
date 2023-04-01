@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
              Shell.NavBarIsVisible="false"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AddictionApp.HomePage" >
+             x:Class="AddictionApp.Views.HomePage" BindingContext="AddictionApp.ViewModels.HomePageVM">
     <VerticalStackLayout>
         <VerticalStackLayout.Background>
             <LinearGradientBrush EndPoint="0,0.7">
@@ -20,10 +20,37 @@
         </Label>
         <Frame Margin="10,50,10,0" HeightRequest="500" CornerRadius="10" HasShadow="True">
             <StackLayout>
-                <ListView>
+                <ListView x:Name="addictionsListView" ItemsSource="{Binding Addictions}" HasUnevenRows="True" SeparatorVisibility="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell></ViewCell>
+                            <ViewCell>
+                                <Grid>
+                                    <Frame Margin="20" HeightRequest="75" CornerRadius="10">
+                                        <Frame.Background>
+                                            <LinearGradientBrush EndPoint="0.7,0">
+                                                <GradientStop Color="#3965FF" Offset="0.0"></GradientStop>
+                                                <GradientStop Color="#CC00FF" Offset="1.0"></GradientStop>
+                                            </LinearGradientBrush>
+                                        </Frame.Background>
+                                        <StackLayout HorizontalOptions="FillAndExpand" >
+
+                                            <Grid VerticalOptions="CenterAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Text="{Binding Name}" FontAttributes="Bold"  TextColor="White" FontSize="20" 
+                                           HorizontalTextAlignment="Start"  Padding="20,0,0,0"></Label>
+                                                <Label Grid.Column="1" FontAttributes="Bold"  Text="{Binding Date}" TextColor="White" FontSize="20" 
+                                           HorizontalTextAlignment="End" Padding="0,0,20,0"></Label>
+                                            </Grid>
+
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                                
+                               
+                            </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

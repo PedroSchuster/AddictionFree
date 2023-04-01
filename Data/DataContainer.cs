@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AddictionApp.Entidades;
+using AddictionApp.Services;
 
 namespace AddictionApp.Data
 {
@@ -26,47 +28,34 @@ namespace AddictionApp.Data
         public int Id
         {
             get { return _id; }
-            set
-            {
-                _id = value;
-            }
         }
 
         private string _name;
         public string Name
         {
             get { return _name; }
-            set
-            {
-                Name = value;
-            }
         }
 
         private DateTime _date;
         public DateTime Date
         {
             get { return _date; }
-            set
-            {
-                _date = value;
-            }
         }
 
         private IList<Note> _notes;
         public IList<Note> Notes
         {
             get { return _notes; }
-            set
-            {
-                _notes = value;
-            }
         }
 
         private DataContainer() { }
 
-        public void Initialize(int id)
+        public void Initialize(Addiction addiction)
         {
-
+            _id = addiction.Id;
+            _name = addiction.Name;
+            _date = addiction.Date;
+            _notes = addiction.Notes;
         }
     }
 }

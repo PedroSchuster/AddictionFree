@@ -1,4 +1,7 @@
-﻿using SQLite;
+﻿using System.Collections.ObjectModel;
+using AddictionApp.Entidades;
+using AddictionApp.Services;
+using SQLite;
 
 namespace AddictionApp;
 
@@ -21,6 +24,24 @@ public partial class App : Application
 
     public App()
 	{
+        try
+        {
+            AddictionService a = new AddictionService();
+
+            Task.Run(async () =>
+
+            {
+                await DataBase.CreateTableAsync<Addiction>();
+
+
+            });
+
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
 		InitializeComponent();
 
 		MainPage = new AppShell();

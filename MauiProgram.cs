@@ -4,21 +4,6 @@ namespace AddictionApp;
 
 public static class MauiProgram
 {
-    private static SQLiteAsyncConnection _database;
-    public static SQLiteAsyncConnection DataBase
-    {
-        get
-        {
-            if (_database == null)
-            {
-                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "control.db3");
-                _database = new SQLiteAsyncConnection(dbPath);
-            }
-            return _database;
-        }
-
-    }
-
 
     public static MauiApp CreateMauiApp()
 	{

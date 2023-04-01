@@ -3,7 +3,7 @@
     x:Class="AddictionApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:AddictionApp"
+    xmlns:local="clr-namespace:AddictionApp.Views"
     Shell.FlyoutBehavior="Disabled" >
 
     <ShellContent

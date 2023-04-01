@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace AddictionApp.Entidades
 {
@@ -17,7 +19,8 @@ namespace AddictionApp.Entidades
 
         public DateTime Date { get; set; }
 
-        public IList<Note> Diary { get; set; }
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public ObservableCollection<Note> Notes { get; set; }
     }
 
     public struct Note
