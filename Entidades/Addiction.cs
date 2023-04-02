@@ -17,7 +17,9 @@ namespace AddictionApp.Entidades
 
         public string Name { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime CreationDate { get; set; }
+
+        public DateTime LastResetDate { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.All)]
         public ObservableCollection<Note> Notes { get; set; }

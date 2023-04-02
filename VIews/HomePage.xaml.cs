@@ -19,7 +19,7 @@ public partial class HomePage : ContentPage
             if (e.SelectedItem as Addiction != null)
             {
                 DataContainer.Instance.Initialize(e.SelectedItem as Addiction);
-                Navigation.PushAsync(new ProgressPage());
+                Navigation.PushAsync(SingletonContainer.ProgressPage);
                 addictionsListView.SelectedItem = null;
             }
         };

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AddictionApp.Views.NotesPage" Shell.NavBarIsVisible="False"
+             Title="NotesPage">
+    <VerticalStackLayout>
+        <VerticalStackLayout.Background>
+            <LinearGradientBrush EndPoint="0,0.7">
+                <GradientStop Color="#2B5AFF" Offset="0.0"></GradientStop>
+                <GradientStop Color="White" Offset="1.0"></GradientStop>
+            </LinearGradientBrush>
+        </VerticalStackLayout.Background>
+        <Frame Margin="10,50,10,0" CornerRadius="10" HeightRequest="75" Padding="0">
+            <CollectionView ItemsSource="{Binding Dates}" 
+                            ItemsLayout="HorizontalList">
+                <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+
+                                <Frame Margin="25,20,25,20" HeightRequest="50"  WidthRequest="75" CornerRadius="10" BackgroundColor="#1DABF9"
+                                       BorderColor="#3965FF" VerticalOptions="Fill" Padding="0">
+                                <StackLayout>
+       
+                                    <Label Padding="0" Text="{Binding Text}" TextColor="White" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center"
+                                            VerticalTextAlignment="Center" VerticalOptions="FillAndExpand"></Label>
+                                </StackLayout>
+                           
+                                </Frame>
+                            </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+        </Frame>
+        <Frame Margin="10,20,10,0"  HeightRequest="500" CornerRadius="10" HasShadow="True">
+            <StackLayout>
+               
+            </StackLayout>
+        </Frame>
+
+    </VerticalStackLayout>
+</ContentPage>

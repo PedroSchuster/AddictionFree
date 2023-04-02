@@ -2,11 +2,58 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AddictionApp.Views.ProgressPage"
+             Shell.NavBarIsVisible="False"
              Title="ProgressPage">
     <VerticalStackLayout>
-        <Label 
+        <VerticalStackLayout.Background>
+            <LinearGradientBrush EndPoint="0,0.7">
+                <GradientStop Color="#2B5AFF" Offset="0.0"></GradientStop>
+                <GradientStop Color="White" Offset="1.0"></GradientStop>
+            </LinearGradientBrush>
+        </VerticalStackLayout.Background>
+        <Frame Margin="10,50,10,0"  HeightRequest="650" CornerRadius="10" HasShadow="True">
+            <StackLayout>
+                <Label Margin="0,0,0,20"
+                    FontSize="48" TextColor="Black" FontAttributes="Bold"
             Text="{Binding Name}"
-            VerticalOptions="Center" 
             HorizontalOptions="Center" />
+                <ProgressBar Margin="0,20,0,0">
+                    <ProgressBar.Background>
+                        <LinearGradientBrush EndPoint="0.7,0">
+                            <GradientStop Color="#3965FF" Offset="0.0"></GradientStop>
+                            <GradientStop Color="#CC00FF" Offset="1.0"></GradientStop>
+                        </LinearGradientBrush>
+                    </ProgressBar.Background>
+                </ProgressBar>
+                
+                <StackLayout>
+                    <Label Margin="0,5,0,0" Text="{Binding Goal}" FontSize="14" TextColor="Black" FontAttributes="Bold"
+                       HorizontalOptions="CenterAndExpand"></Label>
+                    <Line Margin="0,20,0,0" BackgroundColor="#8E1DFF" HeightRequest="3" ></Line>
+                    <Label Margin="0,20,0,0" Text="Tempo de abstinência: " FontSize="20" TextColor="Black" FontAttributes="Bold"
+                       HorizontalOptions="CenterAndExpand"></Label>
+                    <Label Margin="0,10,0,0" Text="{Binding TimeSpanText}" FontSize="14" TextColor="Black" FontAttributes="Bold"
+                       HorizontalOptions="CenterAndExpand"></Label>
+                   
+                    <StackLayout Margin="60,0,55,0" HorizontalOptions="CenterAndExpand">
+                        <Line Margin="0,20,0,0" BackgroundColor="#8E1DFF" HeightRequest="3"></Line>
+                        <Label Margin="0,20,0,0" Text="Total de dinheiro salvo: " FontSize="20" TextColor="Black" FontAttributes="Bold"
+                       HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent"></Label>
+                        <Label Margin="0,10,0,0" Text="R$30,42" FontSize="14" TextColor="Black" FontAttributes="Bold"
+                       HorizontalOptions="CenterAndExpand"></Label>
+                    </StackLayout>
+                </StackLayout>
+
+                <Frame Margin="0,20,0,0" BackgroundColor="#8E1DFF" VerticalOptions="FillAndExpand" CornerRadius="10">
+                    <StackLayout>
+                        <Label Text="CALENDARIO" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Frame>
+                
+        <Button Margin="0,20,0,0" Text="Reiniciar Contagem" FontAttributes="Bold" FontSize="14" HorizontalOptions="CenterAndExpand" CornerRadius="10"
+                BackgroundColor="#8E1DFF" Command="{Binding ResetCommand}"></Button>
+
     </VerticalStackLayout>
 </ContentPage>

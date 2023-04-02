@@ -36,26 +36,63 @@ namespace AddictionApp.Data
             get { return _name; }
         }
 
-        private DateTime _date;
-        public DateTime Date
+        private DateTime _creationDate;
+        public DateTime CreationDate
         {
-            get { return _date; }
+            get { return _creationDate; }
         }
 
-        private IList<Note> _notes;
-        public IList<Note> Notes
+        private DateTime _lastResetDate;
+        public DateTime LastResetDate
+        {
+            get { return _lastResetDate; }
+            set
+            {
+                _lastResetDate = value;
+                Addiction.LastResetDate = LastResetDate;
+                UpdateData();
+            }
+        }
+
+        private ObservableCollection<Note> _notes;
+        public ObservableCollection<Note> Notes
         {
             get { return _notes; }
+            set
+            {
+                _notes = value;
+                Addiction.Notes = Notes;
+                UpdateData();
+
+            }
+        }
+
+        private Addiction _addiction;
+        public Addiction Addiction
+        {
+            get { return _addiction; }
+            set
+            {
+                _addiction = value;
+            }
         }
 
         private DataContainer() { }
 
         public void Initialize(Addiction addiction)
         {
+            Addiction = addiction;
             _id = addiction.Id;
             _name = addiction.Name;
-            _date = addiction.Date;
+            _creationDate = addiction.CreationDate;
+            _lastResetDate = addiction.LastResetDate;
             _notes = addiction.Notes;
+        }
+
+        private async void UpdateData()
+        {
+            AddictionService a = new AddictionService();
+            await a.UpdateAsync(Addiction);
         }
     }
 }

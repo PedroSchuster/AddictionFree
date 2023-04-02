@@ -29,11 +29,8 @@ public partial class App : Application
             AddictionService a = new AddictionService();
 
             Task.Run(async () =>
-
             {
                 await DataBase.CreateTableAsync<Addiction>();
-
-
             });
 
         }

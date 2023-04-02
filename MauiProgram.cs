@@ -7,6 +7,9 @@ public static class MauiProgram
 
     public static MauiApp CreateMauiApp()
 	{
+
+		SingletonContainer.Init();
+
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()

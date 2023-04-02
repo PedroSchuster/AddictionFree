@@ -4,10 +4,26 @@ namespace AddictionApp.Views;
 
 public partial class ProgressPage : ContentPage
 {
-	public ProgressPage()
+    ProgressPageVM vm;
+
+    public ProgressPage()
 	{
 		InitializeComponent();
 
-        BindingContext = new ViewModels.ProgressPage();
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        vm = new ProgressPageVM();
+        BindingContext = vm;
+
+        vm.UpdateData.Start();
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        vm.Source.Cancel();
+    }
 }

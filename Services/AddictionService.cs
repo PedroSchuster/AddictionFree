@@ -79,6 +79,22 @@ namespace AddictionApp.Services
             }
         }
 
+        public async Task<int> DeleteAllAsync()
+        {
+            try
+            {
+                return await database.DeleteAllAsync<Addiction>();
+            }
+            catch (Exception e)
+            {
+                //popup
+                Application.Current.MainPage.DisplayAlert("Error", e.Message, "Fechar");
+
+                return -1;
+            }
+        }
+
+
         public async Task<int> InsertAsync(Addiction addiction)
         {
             try
