@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AddictionApp.Views.NotesPage" Shell.NavBarIsVisible="False"
-             Title="NotesPage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AddictionApp.Views.NotesPage" Shell.NavBarIsVisible="False" 
+             Title="NotesPage" xmlns:local="clr-namespace:AddictionApp.Tools">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:DateTimeStringConverter x:Key="StringConverter"></local:DateTimeStringConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <VerticalStackLayout>
         <VerticalStackLayout.Background>
             <LinearGradientBrush EndPoint="0,0.7">
@@ -10,31 +17,66 @@
                 <GradientStop Color="White" Offset="1.0"></GradientStop>
             </LinearGradientBrush>
         </VerticalStackLayout.Background>
-        <Frame Margin="10,50,10,0" CornerRadius="10" HeightRequest="75" Padding="0">
-            <CollectionView ItemsSource="{Binding Dates}" 
-                            ItemsLayout="HorizontalList">
-                <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
 
-                                <Frame Margin="25,20,25,20" HeightRequest="50"  WidthRequest="75" CornerRadius="10" BackgroundColor="#1DABF9"
-                                       BorderColor="#3965FF" VerticalOptions="Fill" Padding="0">
-                                <StackLayout>
-       
-                                    <Label Padding="0" Text="{Binding Text}" TextColor="White" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center"
-                                            VerticalTextAlignment="Center" VerticalOptions="FillAndExpand"></Label>
-                                </StackLayout>
-                           
-                                </Frame>
-                            </Grid>
+        <Frame Margin="10,20,10,0" CornerRadius="10" HeightRequest="100" Padding="0,10,0,0">
+                <StackLayout>
+                <Label Text="{Binding Month}" HorizontalOptions="Center" VerticalOptions="Center" 
+                   TextColor="Black" FontSize="16" FontAttributes="Bold" ></Label>
+                <Grid>
+                   
+                    <CollectionView x:Name="collectionViewDates" ItemsSource="{Binding Dates}" SelectionChanged="CollectionView_SelectionChanged"
+                                    SelectionMode="Single" SelectedItem="{Binding SelectedItem}" ItemsUpdatingScrollMode="KeepScrollOffset" Scrolled="collectionViewDates_Scrolled"
+                                 ItemsLayout="HorizontalList" VerticalOptions="CenterAndExpand">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                               
+                                <Grid>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal"></VisualState>
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+
+                                    <Border ZIndex="0" Grid.Column="0" HeightRequest="50"  WidthRequest="75" BackgroundColor="#1DABF9"
+                                       Padding="0" HorizontalOptions="CenterAndExpand" Margin="25,10,25,0"
+                                           VerticalOptions="FillAndExpand" >
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="10,10,10,10">
+                                                </RoundRectangle>
+                                            </Border.StrokeShape>
+
+                                        <Label Text="{Binding Text, Converter={StaticResource StringConverter}}" TextColor="White" FontSize="18" FontAttributes="Bold" 
+                                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                    
+                                        </Label>
+                                        </Border>
+
+                                </Grid>
 
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+                </Grid>
+              
+            </StackLayout>
+
         </Frame>
         <Frame Margin="10,20,10,0"  HeightRequest="500" CornerRadius="10" HasShadow="True">
             <StackLayout>
-               
+              
+                
+                <Label Text="Teste" TextColor="Black" FontSize="16" FontAttributes="Bold" 
+                                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" IsEnabled="True">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenCalendarCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
             </StackLayout>
         </Frame>
 
