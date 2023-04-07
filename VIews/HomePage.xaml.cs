@@ -14,12 +14,12 @@ public partial class HomePage : ContentPage
 
 		BindingContext = new HomePageVM();
 
-        addictionsListView.ItemSelected += (s, e) =>
+        addictionsListView.ItemSelected += async (s, e) => 
         {
             if (e.SelectedItem as Addiction != null)
             {
                 DataContainer.Instance.Initialize(e.SelectedItem as Addiction);
-                Navigation.PushAsync(SingletonContainer.ProgressPage);
+                await Navigation.PushAsync(new AppShell());
                 addictionsListView.SelectedItem = null;
             }
         };

@@ -21,15 +21,6 @@ namespace AddictionApp.Entidades
 
         public DateTime LastResetDate { get; set; }
 
-        [OneToMany(CascadeOperations = CascadeOperation.All)]
-        public ObservableCollection<Note> Notes { get; set; }
-    }
-
-    public struct Note
-    {
-        public string text;
-
-        public DateTime date;
     }
 
 }

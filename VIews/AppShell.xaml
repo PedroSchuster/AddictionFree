@@ -2,13 +2,21 @@
 <Shell
     x:Class="AddictionApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:AddictionApp.Views"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+     android:TabbedPage.ToolbarPlacement="Bottom" Shell.TabBarUnselectedColor="Blue"
+    xmlns:local="clr-namespace:AddictionApp.Views" Shell.NavBarIsVisible="False" 
     Shell.FlyoutBehavior="Disabled" >
 
-    <ShellContent
-        Title="Home"
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+            <ShellContent
+        Title="Progress"
+        ContentTemplate="{DataTemplate local:ProgressPage}"
+        Route="MainPage" />
+            <ShellContent
+        Title="Notes"
         ContentTemplate="{DataTemplate local:NotesPage}"
         Route="MainPage" />
+    </FlyoutItem>
+
 
 </Shell>

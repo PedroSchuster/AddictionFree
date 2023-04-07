@@ -23,9 +23,9 @@
                 <Label Text="{Binding Month}" HorizontalOptions="Center" VerticalOptions="Center" 
                    TextColor="Black" FontSize="16" FontAttributes="Bold" ></Label>
                 <Grid>
-                   
-                    <CollectionView x:Name="collectionViewDates" ItemsSource="{Binding Dates}" SelectionChanged="CollectionView_SelectionChanged"
-                                    SelectionMode="Single" SelectedItem="{Binding SelectedItem}" ItemsUpdatingScrollMode="KeepScrollOffset" Scrolled="collectionViewDates_Scrolled"
+
+                    <CollectionView x:Name="collectionViewDates" ItemsSource="{Binding Dates}" SelectionChanged="CollectionView_SelectionChanged" 
+                                    SelectionMode="Single" SelectedItem="{Binding SelectedItem}"  Scrolled="collectionViewDates_Scrolled"
                                  ItemsLayout="HorizontalList" VerticalOptions="CenterAndExpand">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -51,7 +51,7 @@
                                                 </RoundRectangle>
                                             </Border.StrokeShape>
 
-                                        <Label Text="{Binding Text, Converter={StaticResource StringConverter}}" TextColor="White" FontSize="18" FontAttributes="Bold" 
+                                        <Label  Text="{Binding Text, Converter={StaticResource StringConverter}}" TextColor="White" FontSize="18" FontAttributes="Bold" 
                                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
                     
                                         </Label>
@@ -62,6 +62,7 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+                    
                 </Grid>
               
             </StackLayout>
@@ -69,14 +70,10 @@
         </Frame>
         <Frame Margin="10,20,10,0"  HeightRequest="500" CornerRadius="10" HasShadow="True">
             <StackLayout>
-              
-                
-                <Label Text="Teste" TextColor="Black" FontSize="16" FontAttributes="Bold" 
-                                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" IsEnabled="True">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OpenCalendarCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
+                <Editor AutoSize="Disabled"  VerticalOptions="FillAndExpand"  Placeholder="Digite aqui...." TextColor="Black" Text="{Binding Text}" IsEnabled="{Binding IsEditEnable}">
+                </Editor>
+                <Button Text="{Binding ButtonText}" BackgroundColor="Red" TextColor="Black" Command="{Binding UpdateCommand}" IsVisible="{Binding IsButtonVisible}">
+                </Button>
             </StackLayout>
         </Frame>
 

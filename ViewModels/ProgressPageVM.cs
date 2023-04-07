@@ -68,9 +68,10 @@ namespace AddictionApp.ViewModels
         public ProgressPageVM()
         {
 
-            ResetCommand = new Command(() =>
+            ResetCommand = new Command( () =>
             {
-                DataContainer.Instance.LastResetDate = DateTime.Now;
+                DataContainer.Instance.Addiction.LastResetDate = DateTime.Now;
+                DataContainer.Instance.UpdateData();
                 RefreshData();
             });
 
@@ -89,8 +90,8 @@ namespace AddictionApp.ViewModels
 
         private void RefreshData()
         {
-            Name = DataContainer.Instance.Name;
-            Date = DataContainer.Instance.LastResetDate;
+            Name = DataContainer.Instance.Addiction.Name;
+            Date = DataContainer.Instance.Addiction.LastResetDate;
         }
 
         private  void CalculateData(CancellationToken token)

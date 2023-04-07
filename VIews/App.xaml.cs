@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using AddictionApp.Entidades;
 using AddictionApp.Services;
+using AddictionApp.Views;
 using SQLite;
 
 namespace AddictionApp;
@@ -31,6 +32,7 @@ public partial class App : Application
             Task.Run(async () =>
             {
                 await DataBase.CreateTableAsync<Addiction>();
+                await DataBase.CreateTableAsync<AddictionNote>();
             });
 
         }
@@ -41,6 +43,6 @@ public partial class App : Application
 
 		InitializeComponent();
 
-		MainPage = new AppShell();
-	}
+		MainPage = new NavigationPage(new HomePage());
+    }
 }

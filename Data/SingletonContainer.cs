@@ -18,7 +18,6 @@ namespace AddictionApp
         public static void Init()
         {
             _progressPage = new ProgressPage();
-            _notesPage = new NotesPage();
         }
     }
 }

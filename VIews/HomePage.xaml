@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
-             Shell.NavBarIsVisible="false"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="false" NavigationPage.HasNavigationBar="False"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Padding="0" xmlns:local="clr-namespace:AddictionApp.Tools"
              x:Class="AddictionApp.Views.HomePage" BindingContext="AddictionApp.ViewModels.HomePageVM">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:DayHourStringConverter x:Key="StringConverter"></local:DayHourStringConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <VerticalStackLayout>
         <VerticalStackLayout.Background>
             <LinearGradientBrush EndPoint="0,0.7">
@@ -41,7 +48,7 @@
                                                 </Grid.ColumnDefinitions>
                                                 <Label Text="{Binding Name}" FontAttributes="Bold"  TextColor="White" FontSize="20" 
                                            HorizontalTextAlignment="Start"  Padding="20,0,0,0"></Label>
-                                                <Label Grid.Column="1" FontAttributes="Bold"  Text="{Binding LastResetDate}" TextColor="White" FontSize="20" 
+                                                <Label Grid.Column="1" FontAttributes="Bold"  Text="{Binding LastResetDate, Converter={StaticResource StringConverter}}" TextColor="White" FontSize="20" 
                                            HorizontalTextAlignment="End" Padding="0,0,20,0"></Label>
                                             </Grid>
 
