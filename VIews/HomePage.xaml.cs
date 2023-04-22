@@ -18,8 +18,8 @@ public partial class HomePage : ContentPage
         {
             if (e.SelectedItem as Addiction != null)
             {
-                DataContainer.Instance.Initialize(e.SelectedItem as Addiction);
-                await Navigation.PushAsync(new AppShell());
+                await DataContainer.Instance.Initialize(e.SelectedItem as Addiction);
+                await Shell.Current.GoToAsync(nameof(AchievementsPage), true);
                 addictionsListView.SelectedItem = null;
             }
         };

@@ -5,6 +5,7 @@ namespace AddictionApp.Views;
 public partial class NotesPage : ContentPage
 {
     private static NotesPageVM vm;
+
     public NotesPage()
 	{
 		InitializeComponent();

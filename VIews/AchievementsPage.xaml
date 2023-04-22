@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AddictionApp.Views.AchievementsPage"
+             Title="AchievementsPage">
+    <VerticalStackLayout>
+        <VerticalStackLayout.Background>
+            <LinearGradientBrush EndPoint="0,0.7">
+                <GradientStop Color="#2B5AFF" Offset="0.0"></GradientStop>
+                <GradientStop Color="White" Offset="1.0"></GradientStop>
+            </LinearGradientBrush>
+        </VerticalStackLayout.Background>
+        <ListView x:Name="addictionsListView" ItemsSource="{Binding Achievements}" HasUnevenRows="True" SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid  Margin="10,10,10,0" RowSpacing="20">
+                            <Frame CornerRadius="10" BackgroundColor="{Binding BackgroundColor}">
+                                <Frame.Background>
+                                    <LinearGradientBrush EndPoint="0,0.7">
+                                        <GradientStop Color="#65F3DA" Offset="0.0"></GradientStop>
+                                        <GradientStop Color="#3965FF" Offset="1.0"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Frame.Background>
+                                <FlexLayout JustifyContent="Start" AlignContent="Center">
+                                    <Image Source="{Binding Image}" HorizontalOptions="Start" HeightRequest="50"></Image>
+                                    <Label Text="{Binding Text}" VerticalOptions="Center" Margin="10,0,0,0" FontSize="20" TextColor="White" FontAttributes="Bold"
+                                       WidthRequest="100"></Label>
+
+                                    <Label Text="{Binding Percent}" VerticalOptions="Center" HorizontalOptions="End" Margin="60,0,0,0"
+                                   FontSize="20" TextColor="White" FontAttributes="Bold" ></Label>
+                                </FlexLayout>
+                            </Frame>
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </VerticalStackLayout>
+
+</ContentPage>
