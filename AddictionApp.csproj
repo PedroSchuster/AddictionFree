@@ -50,6 +50,11 @@
   </ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\block.png" />
+	  <None Remove="Resources\Images\trophy.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <PackageReference Include="Microsoft.NETCore.Platforms" Version="7.0.1" />
 	  <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
 	  <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />

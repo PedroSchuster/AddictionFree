@@ -16,6 +16,10 @@ namespace AddictionApp.Entidades
 
         public string BackgroundColor { get; set; }
 
+        public string GradientStart { get; set; }
+
+        public string GradientEnd { get; set; }
+
         public string Text { get; set; }
 
         public string Percent { get; set; }

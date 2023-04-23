@@ -95,6 +95,7 @@ namespace AddictionApp.ViewModels
             TimeSpan ts = DateTime.Now - DataContainer.Instance.Addiction.LastResetDate;
             double ratio = (ts.TotalHours / achievement.Duration.TotalHours) * 100;
             achievement.Percent = ratio >= 100 ? "100%" : ratio.ToString("F0") + "%";
+            achievement.Image = "trophy.png";
         }
 
     }

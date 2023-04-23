@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AddictionApp.Entidades;
 using AddictionApp.Services;
+using SQLite;
 
 namespace AddictionApp.Data
 {
@@ -48,13 +49,24 @@ namespace AddictionApp.Data
 
             if (Achievements.Count <= 0)
             {
-                await a.DeleteAllAsync();
-                Achievements.Add(new Achievement { Duration = new TimeSpan(3, 0, 0, 0), Text = "3 Dias", Image = "dotnet_bot.svg", BackgroundColor = "Black", Percent = "0%" });
-                Achievements.Add(new Achievement { Duration = new TimeSpan(7, 0, 0, 0), Text = "1 Semana", Image = "dotnet_bot.svg", BackgroundColor = "#5ED3D3D3", Percent = "0%" });
-                Achievements.Add(new Achievement { Duration = new TimeSpan(30, 0, 0, 0), Text = "1 Mês", Image = "dotnet_bot.svg", BackgroundColor = "#5ED3D3D3", Percent = "0%" });
-                Achievements.Add(new Achievement { Duration = new TimeSpan(90, 0, 0, 0), Text = "3 Meses", Image = "dotnet_bot.svg", BackgroundColor = "#5ED3D3D3", Percent = "0%" });
-                Achievements.Add(new Achievement { Duration = new TimeSpan(180, 0, 0, 0), Text = "6 Meses", Image = "dotnet_bot.svg", BackgroundColor = "#5ED3D3D3", Percent = "0%" });
-                Achievements.Add(new Achievement { Duration = new TimeSpan(365, 0, 0, 0), Text = "1 Ano", Image = "dotnet_bot.svg", BackgroundColor = "#5ED3D3D3", Percent = "0%" });
+                //await a.DeleteAllAsync();
+                Achievements.Add(new Achievement { Duration = new TimeSpan(3, 0, 0, 0), Text = "3 Dias", 
+                    Image = "block.png", BackgroundColor = "Black", Percent = "0%", GradientStart = "#65F3DA", GradientEnd = "#3965FF" });
+
+                Achievements.Add(new Achievement { Duration = new TimeSpan(7, 0, 0, 0), Text = "1 Semana", 
+                    Image = "block.png", BackgroundColor = "#5ED3D3D3", Percent = "0%", GradientStart = "#3965FF", GradientEnd = "#FB38FF" });
+
+                Achievements.Add(new Achievement { Duration = new TimeSpan(30, 0, 0, 0), Text = "1 Mês", 
+                    Image = "block.png", BackgroundColor = "#5ED3D3D3", Percent = "0%", GradientStart = "#FA1AFF", GradientEnd = "#FF0000" });
+
+                Achievements.Add(new Achievement { Duration = new TimeSpan(90, 0, 0, 0), Text = "3 Meses", 
+                    Image = "block.png", BackgroundColor = "#5ED3D3D3", Percent = "0%", GradientStart = "#FF7A00", GradientEnd = "#FFE600" });
+
+                Achievements.Add(new Achievement { Duration = new TimeSpan(180, 0, 0, 0), Text = "6 Meses",
+                    Image = "block.png", BackgroundColor = "#5ED3D3D3", Percent = "0%", GradientStart = "#65F3DA", GradientEnd = "#3965FF" });
+
+                Achievements.Add(new Achievement { Duration = new TimeSpan(365, 0, 0, 0), Text = "1 Ano", 
+                    Image = "block.png", BackgroundColor = "#5ED3D3D3", Percent = "0%", GradientStart = "#FFE600", GradientEnd = "#42FF00" });
 
             }
 
@@ -66,7 +78,7 @@ namespace AddictionApp.Data
             AddictionAchievements = new ObservableCollection<Achievement>(await a.ToListAsync(Addiction.Id));
             if (AddictionAchievements.Count <= 0)
             {
-                await a.InsertAsync(this.Achievements[0]);
+                await a.InsertAsync(Achievements[0]);
             }
 
             await UpdateAchievement();

@@ -14,8 +14,8 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid  Margin="10,10,10,0" RowSpacing="20">
-                            <Frame CornerRadius="10" BackgroundColor="{Binding BackgroundColor}">
+                        <Grid  Margin="10,10,10,0">
+                            <Frame CornerRadius="10" Margin="15" BackgroundColor="{Binding BackgroundColor}">
                                 <Frame.Background>
                                     <LinearGradientBrush EndPoint="0,0.7">
                                         <GradientStop Color="#65F3DA" Offset="0.0"></GradientStop>
@@ -23,7 +23,7 @@
                                     </LinearGradientBrush>
                                 </Frame.Background>
                                 <FlexLayout JustifyContent="Start" AlignContent="Center">
-                                    <Image Source="{Binding Image}" HorizontalOptions="Start" HeightRequest="50"></Image>
+                                    <Image Source="{Binding Image}" HorizontalOptions="Start" HeightRequest="40"></Image>
                                     <Label Text="{Binding Text}" VerticalOptions="Center" Margin="10,0,0,0" FontSize="20" TextColor="White" FontAttributes="Bold"
                                        WidthRequest="100"></Label>
 

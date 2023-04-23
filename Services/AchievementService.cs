@@ -30,6 +30,8 @@ namespace AddictionApp.Services
         {
             try
             {
+                var b = database.Table<Achievement>();
+
                 return await database.InsertAsync(achievement);
             }
             catch (Exception e)
@@ -59,6 +61,7 @@ namespace AddictionApp.Services
 
             try
             {
+                var a = await database.Table<Achievement>().ToListAsync();
                 achievements = new ObservableCollection<Achievement>(await database.Table<Achievement>().ToListAsync());
             }
             catch (Exception e)
