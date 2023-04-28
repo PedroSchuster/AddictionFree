@@ -46,7 +46,7 @@ namespace AddictionApp.Data
             AchievementService a = new AchievementService();
 
             Addiction = addiction;
-
+            
             if (Achievements.Count <= 0)
             {
                 //await a.DeleteAllAsync();

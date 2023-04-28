@@ -60,6 +60,7 @@
 	  <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
 	  <PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.4" />
 	  <PackageReference Include="Syncfusion.Licensing" Version="21.1.41" />
+	  <PackageReference Include="Syncfusion.Maui.Calendar" Version="21.1.41" />
 	  <PackageReference Include="Syncfusion.Maui.TabView" Version="21.1.41" />
 	</ItemGroup>
 

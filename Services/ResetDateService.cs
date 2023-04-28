@@ -9,76 +9,49 @@ using SQLite;
 
 namespace AddictionApp.Services
 {
-    public class AchievementService
+    class ResetDateService
     {
         private SQLiteAsyncConnection database;
 
-        public AchievementService()
+        public ResetDateService()
         {
             try
             {
                 database = App.DataBase;
 
             }
-            catch
-            {
-                //popup?
-            }
-        }
-
-        public async Task<int> InsertAsync(Achievement achievement)
-        {
-            try
-            {
-                var b = database.Table<Achievement>();
-
-                return await database.InsertAsync(achievement);
-            }
             catch (Exception e)
             {
                 Application.Current.MainPage.DisplayAlert("Error", e.Message, "Fechar");
 
-                return -1;
             }
         }
 
-        public async Task<int> UpdateAsync(Achievement achievement)
+        public async Task<List<ResetDate>> ToListAsync(int id)
         {
-            try
-            {
-                return await database.UpdateAsync(achievement);
-            }
-            catch
-            {
-                //popup
-                return -1;
-            }
-        }
-
-        public async Task<List<Achievement>> ToListAsync(int addictionId)
-        {
-            ObservableCollection<Achievement> achievements;
+            ObservableCollection<ResetDate> dates;
 
             try
             {
-                achievements = new ObservableCollection<Achievement>(await database.Table<Achievement>().ToListAsync());
+                dates = new ObservableCollection<ResetDate>(await database.Table<ResetDate>().ToListAsync());
             }
             catch (Exception e)
             {
                 //popup
                 Application.Current.MainPage.DisplayAlert("Error", e.Message, "Fechar");
 
-                return new List<Achievement>();
+                return new List<ResetDate>();
             }
 
-            return achievements.Where(x => x.AddictionId == addictionId).ToList();
+            return dates.Where(x => x.AddictionId == id).ToList();
         }
+
 
         public async Task<int> DeleteAllAsync()
         {
             try
             {
-                return await database.DeleteAllAsync<Achievement>();
+                return await database.DeleteAllAsync<ResetDate>();
             }
             catch (Exception e)
             {
@@ -88,5 +61,21 @@ namespace AddictionApp.Services
                 return -1;
             }
         }
+
+
+        public async Task<int> InsertAsync(ResetDate resetDate)
+        {
+            try
+            {
+                return await database.InsertAsync(resetDate);
+            }
+            catch (Exception e)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", e.Message, "Fechar");
+
+                return -1;
+            }
+        }
+
     }
 }

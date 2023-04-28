@@ -33,6 +33,7 @@ public partial class App : Application
             {
                 await DataBase.CreateTableAsync<Addiction>();
                 await DataBase.CreateTableAsync<AddictionNote>();
+                await DataBase.CreateTableAsync<ResetDate>();
                 await DataBase.CreateTableAsync<Achievement>();
             });
 
