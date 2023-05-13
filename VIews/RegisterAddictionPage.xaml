@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AddictionApp.Views.RegisterAddictionPage"
+             Title="RegisterAddictionPage" >
+
+    <VerticalStackLayout>
+        <VerticalStackLayout.Background>
+            <LinearGradientBrush EndPoint="0,0.7">
+                <GradientStop Color="#2B5AFF" Offset="0.0"></GradientStop>
+                <GradientStop Color="White" Offset="1.0"></GradientStop>
+            </LinearGradientBrush>
+        </VerticalStackLayout.Background>
+        <Label Text="Qual é o vicio ou habito ruim que voce quer deixar de fazer?" TextColor="Black" FontAttributes="Bold" Margin="30,20,30,0"
+               HorizontalTextAlignment="Center" FontSize="15" ></Label>
+        <Frame BackgroundColor="White" CornerRadius="10" Margin="30" HeightRequest="35" Padding="10,5,0,0">
+            <Entry BackgroundColor="Transparent" HeightRequest="35" TextColor="Black" VerticalOptions="Center" Text="{Binding Name}"
+                   FontSize="15"></Entry>
+        </Frame>
+        <Label Text="Selecione um tipo de gasto que você tem relacionado a esse problema?" TextColor="Black" FontAttributes="Bold" Margin="30,0,30,10"
+               HorizontalTextAlignment="Center" FontSize="15"></Label>
+        <ListView x:Name="list" ItemsSource="{Binding Options}" SelectedItem="{Binding SelectedItem}"  HasUnevenRows="True" SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Frame BackgroundColor="White" CornerRadius="10" Margin="30,10,30,10" HeightRequest="100" Padding="0,10,0,0">
+                                <StackLayout VerticalOptions="FillAndExpand">
+                                    <Label Text="{Binding Title}" TextColor="Black" FontAttributes="Bold" FontSize="15" VerticalOptions="Start" 
+                                   HorizontalOptions="Center"></Label>
+                                    <Label Text="{Binding Description}" TextColor="Black" FontAttributes="Bold" FontSize="12" VerticalOptions="Center" 
+                                    Padding="0,0,0,0" Margin="10,0,10,0" HorizontalTextAlignment="Center"></Label>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Label Text="{Binding Option}" IsVisible="{Binding IsVisible}" TextColor="Black" FontAttributes="Bold" Margin="30,0,30,0"
+               HorizontalTextAlignment="Center" FontSize="15"></Label>
+        
+        <Frame IsVisible="{Binding IsMoneySelected}" BackgroundColor="White" CornerRadius="10" Margin="110,0,110,15" HeightRequest="35" Padding="0,10,0,0">
+            <Entry Text="{Binding Money}" BackgroundColor="Transparent" HeightRequest="35" TextColor="Black"
+                   VerticalOptions="Center" FontSize="15"
+                   Keyboard="Numeric" HorizontalTextAlignment="Center"></Entry>
+        </Frame>
+        <TimePicker Time="{Binding Time}"  HorizontalOptions="Center" WidthRequest="150" Margin="20,0,20,10" IsVisible="False">
+            <TimePicker.Triggers>
+                <MultiTrigger TargetType="Picker">
+                    <MultiTrigger.Conditions>
+                        <BindingCondition Binding="{Binding IsVisible}" Value="True"></BindingCondition>
+                        <BindingCondition Binding="{Binding IsMoneySelected}" Value="False"></BindingCondition>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="IsVisible" Value="True" />
+                </MultiTrigger>
+            </TimePicker.Triggers>
+        </TimePicker>
+        <Label Text="Quando foi a última vez?" TextColor="Black" FontAttributes="Bold" Margin="30,10,30,0"
+               HorizontalTextAlignment="Center" FontSize="15">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label" Binding="{Binding IsVisible}" Value="False">
+                    <Setter Property="Margin" Value="0,80,0,0" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
+        <DatePicker Format="dd/MM/yyyy" HorizontalOptions="Center"></DatePicker>
+        <Button Text="Confirmar" BackgroundColor="#2B5AFF" HorizontalOptions="Center" CornerRadius="30" Margin="0,30,0,0"></Button>
+    </VerticalStackLayout>
+
+</ContentPage>
+    

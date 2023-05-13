@@ -21,6 +21,12 @@ namespace AddictionApp.Entidades
 
         public DateTime LastResetDate { get; set; }
 
+        public string Option { get; set; }
+
+        public TimeSpan WastedTime { get; set; }
+        
+        public float WastedMoney { get; set; }
+
     }
 
 }
