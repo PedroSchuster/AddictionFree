@@ -23,7 +23,7 @@ namespace AddictionApp.Entidades
 
         public string Option { get; set; }
 
-        public TimeSpan WastedTime { get; set; }
+        public TimeSpan? WastedTime { get; set; }
         
         public float WastedMoney { get; set; }
 

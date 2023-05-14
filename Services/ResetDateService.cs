@@ -11,7 +11,7 @@ namespace AddictionApp.Services
 {
     class ResetDateService
     {
-        private SQLiteAsyncConnection database;
+        private readonly SQLiteAsyncConnection database;
 
         public ResetDateService()
         {

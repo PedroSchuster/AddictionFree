@@ -6,7 +6,7 @@
 
     <VerticalStackLayout>
         <VerticalStackLayout.Background>
-            <LinearGradientBrush EndPoint="0,0.7">
+            <LinearGradientBrush EndPoint="0,1">
                 <GradientStop Color="#2B5AFF" Offset="0.0"></GradientStop>
                 <GradientStop Color="White" Offset="1.0"></GradientStop>
             </LinearGradientBrush>
@@ -19,7 +19,7 @@
         </Frame>
         <Label Text="Selecione um tipo de gasto que você tem relacionado a esse problema?" TextColor="Black" FontAttributes="Bold" Margin="30,0,30,10"
                HorizontalTextAlignment="Center" FontSize="15"></Label>
-        <ListView x:Name="list" ItemsSource="{Binding Options}" SelectedItem="{Binding SelectedItem}"  HasUnevenRows="True" SeparatorVisibility="None">
+        <ListView x:Name="list" ItemsSource="{Binding Options}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}"  HasUnevenRows="True" SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -40,7 +40,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Label Text="{Binding Option}" IsVisible="{Binding IsVisible}" TextColor="Black" FontAttributes="Bold" Margin="30,0,30,0"
+        <Label Text="{Binding Option}" IsVisible="{Binding IsVisible}" TextColor="Black" FontAttributes="Bold" Margin="30,0,30,10"
                HorizontalTextAlignment="Center" FontSize="15"></Label>
         
         <Frame IsVisible="{Binding IsMoneySelected}" BackgroundColor="White" CornerRadius="10" Margin="110,0,110,15" HeightRequest="35" Padding="0,10,0,0">
@@ -48,9 +48,9 @@
                    VerticalOptions="Center" FontSize="15"
                    Keyboard="Numeric" HorizontalTextAlignment="Center"></Entry>
         </Frame>
-        <TimePicker Time="{Binding Time}"  HorizontalOptions="Center" WidthRequest="150" Margin="20,0,20,10" IsVisible="False">
+        <TimePicker Format="hh:mm" Time="{Binding Time}"  HorizontalOptions="Center" WidthRequest="45" Margin="20,0,20,10" IsVisible="False">
             <TimePicker.Triggers>
-                <MultiTrigger TargetType="Picker">
+                <MultiTrigger TargetType="TimePicker">
                     <MultiTrigger.Conditions>
                         <BindingCondition Binding="{Binding IsVisible}" Value="True"></BindingCondition>
                         <BindingCondition Binding="{Binding IsMoneySelected}" Value="False"></BindingCondition>
@@ -59,16 +59,16 @@
                 </MultiTrigger>
             </TimePicker.Triggers>
         </TimePicker>
-        <Label Text="Quando foi a última vez?" TextColor="Black" FontAttributes="Bold" Margin="30,10,30,0"
+        <Label Text="Quando foi a última vez?" TextColor="Black" FontAttributes="Bold" Margin="30,5,30,0"
                HorizontalTextAlignment="Center" FontSize="15">
             <Label.Triggers>
                 <DataTrigger TargetType="Label" Binding="{Binding IsVisible}" Value="False">
-                    <Setter Property="Margin" Value="0,80,0,0" />
+                    <Setter Property="Margin" Value="0,85,0,0" />
                 </DataTrigger>
             </Label.Triggers>
         </Label>
         <DatePicker Format="dd/MM/yyyy" HorizontalOptions="Center"></DatePicker>
-        <Button Text="Confirmar" BackgroundColor="#2B5AFF" HorizontalOptions="Center" CornerRadius="30" Margin="0,30,0,0"></Button>
+        <Button Text="Confirmar" BackgroundColor="#2B5AFF" HorizontalOptions="Center" CornerRadius="30" Margin="0,20,0,0" Command="{Binding RegisterCommand}"></Button>
     </VerticalStackLayout>
 
 </ContentPage>

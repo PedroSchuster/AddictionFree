@@ -48,6 +48,6 @@ public partial class App : Application
         InitializeComponent();
 
 
-		MainPage = new RegisterAddictionPage();
+		MainPage = new MainPageShell();
     }
 }

@@ -47,7 +47,7 @@ namespace AddictionApp.ViewModels
             }
         }
 
-        private string _option;
+        private string _option = "Evento";
         public string Option
         {
             get { return _option; }
@@ -91,7 +91,7 @@ namespace AddictionApp.ViewModels
             }
         }
 
-        private TimeSpan _time = TimeSpan.Zero;
+        private TimeSpan _time = new TimeSpan(1,0,0);
         public TimeSpan Time
         {
             get { return _time; }
@@ -119,12 +119,7 @@ namespace AddictionApp.ViewModels
         {
             AddictionService a = new AddictionService();
 
-            if (Time != TimeSpan.Zero)
-            {
-                await a.InsertAsync(new Addiction { Name =  Name, CreationDate = DateTime.Now, 
-                    LastResetDate = DateTime.Now, Option = Option, WastedTime = Time, WastedMoney = 0});
-            }
-            else if (Money > 0)
+            if (IsMoneySelected)
             {
                 await a.InsertAsync(new Addiction
                 {
@@ -132,10 +127,40 @@ namespace AddictionApp.ViewModels
                     CreationDate = DateTime.Now,
                     LastResetDate = DateTime.Now,
                     Option = Option,
-                    WastedTime = TimeSpan.Zero,
+                    WastedTime = null,
                     WastedMoney = Money
                 });
             }
+            else if (IsVisible)
+            {
+                await a.InsertAsync(new Addiction
+                {
+                    Name = Name,
+                    CreationDate = DateTime.Now,
+                    LastResetDate = DateTime.Now,
+                    Option = Option,
+                    WastedTime = Time,
+                    WastedMoney = 0
+                });
+            }
+            else
+            {
+                await a.InsertAsync(new Addiction
+                {
+                    Name = Name,
+                    CreationDate = DateTime.Now,
+                    LastResetDate = DateTime.Now,
+                    Option = Option,
+                    WastedTime = null,
+                    WastedMoney = 0
+                });
+            }
+
+            IsVisible = false;
+            Option = "Evento";
+            IsMoneySelected = false;
+            SelectedItem = null;
+            Name = string.Empty;
         }
 
         private void ChangeOption()
@@ -150,7 +175,7 @@ namespace AddictionApp.ViewModels
                             IsVisible = true;
                             Option = "Dinheiro";
                             IsMoneySelected = true;
-                            Time = TimeSpan.Zero;
+                            Time = new TimeSpan(1, 0, 0);
                             break;
                         case "Tempo":
                             IsVisible = true;

@@ -38,6 +38,39 @@ namespace AddictionApp.ViewModels
             }
         }
 
+        private string _typeText;
+        public string TypeText
+        {
+            get { return _typeText; }
+            set
+            {
+                _typeText = value;
+                OnPropertyChanged(nameof(TypeText));
+            }
+        }
+
+        private string _wastedText;
+        public string WastedText
+        {
+            get { return _wastedText; }
+            set
+            {
+                _wastedText = value;
+                OnPropertyChanged(nameof(WastedText));
+            }
+        }
+
+        private bool _isVisible;
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set
+            {
+                _isVisible = value;
+                OnPropertyChanged(nameof(IsVisible));
+            }
+        }
+
         private DateTime _date;
         public DateTime Date
         {
@@ -75,6 +108,24 @@ namespace AddictionApp.ViewModels
 
         public ProgressPageVM()
         {
+            IsVisible = DataContainer.Instance.Addiction.Option != "Evento";
+
+            if (IsVisible)
+            {
+                double? minutesWasted = DataContainer.Instance.Addiction.WastedTime.HasValue ?
+                    DataContainer.Instance.Addiction.WastedTime.Value.TotalMinutes *
+                    (DateTime.Today - DataContainer.Instance.Addiction.CreationDate).Days : null;
+
+                double? moneyWasted = DataContainer.Instance.Addiction.WastedMoney > 0 ?
+                    DataContainer.Instance.Addiction.WastedMoney *
+                    (DateTime.Today - DataContainer.Instance.Addiction.CreationDate).Days : 0;
+
+                TypeText = $"Total {DataContainer.Instance.Addiction.Option} gasto: ";
+                WastedText = minutesWasted.HasValue ? string.Format("{0}H {1}min", minutesWasted / 60, minutesWasted % 60) 
+                    : $"R${moneyWasted}" ;
+            }
+
+
 
             ResetCommand = new Command( async () =>
             {

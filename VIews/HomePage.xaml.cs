@@ -6,8 +6,6 @@ namespace AddictionApp.Views;
 
 public partial class HomePage : ContentPage
 {
-    ViewCell lastCell;
-
     public HomePage()
 	{
 		InitializeComponent();
@@ -19,7 +17,7 @@ public partial class HomePage : ContentPage
             if (e.SelectedItem as Addiction != null)
             {
                 await DataContainer.Instance.Initialize(e.SelectedItem as Addiction);
-                await Shell.Current.GoToAsync(nameof(AchievementsPage), true);
+                await Shell.Current.GoToAsync(nameof(ProgressPage), true);
                 addictionsListView.SelectedItem = null;
             }
         };
